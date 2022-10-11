@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: theme(),
       home: ShoppingCartPage(),
     );
@@ -37,7 +38,23 @@ class ShoppingCartPage extends StatelessWidget {
 
   AppBar _buildShoppingCartAppBar() {
     return AppBar(
-      title: Text("ShoppingCart"),
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () {
+          print("클릭됨");
+        },
+      ),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.shopping_cart),
+          onPressed: () {
+            print("클릭됨");
+          },
+        ),
+        SizedBox(
+          width: 16,
+        ),
+      ],
     );
   }
 }
