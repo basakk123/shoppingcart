@@ -12,7 +12,7 @@ class _ShoppingCartHeaderState extends State<ShoppingCartHeader> {
   int selectedid = 0;
 
   // 상수
-  List<String> selectedPic = [
+  final List<String> selectedPic = [
     "assets/p1.jpeg",
     "assets/p2.jpeg",
     "assets/p3.jpeg",
@@ -30,10 +30,43 @@ class _ShoppingCartHeaderState extends State<ShoppingCartHeader> {
   }
 
   Widget _buildHeaderPic() {
-    return SizedBox();
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AspectRatio(
+        aspectRatio: 5 / 3,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.asset(
+            selectedPic[selectedid],
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildHeaderSelector() {
-    return SizedBox();
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        _buildHeaderSelectorButton(0),
+        _buildHeaderSelectorButton(1),
+        _buildHeaderSelectorButton(2),
+        _buildHeaderSelectorButton(3),
+      ],
+    );
+  }
+
+  Widget _buildHeaderSelectorButton(int id) {
+    return IconButton(
+        onPressed: () {
+          setState(() {
+            selectedid = id;
+          });
+        },
+        icon: Icon(
+          Icons.directions_bike,
+          color: Colors.black,
+        ));
   }
 }
