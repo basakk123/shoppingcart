@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shoppingcart/constants.dart';
 
 class ShoppingCartHeader extends StatefulWidget {
   const ShoppingCartHeader({Key? key}) : super(key: key);
@@ -49,24 +51,32 @@ class _ShoppingCartHeaderState extends State<ShoppingCartHeader> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _buildHeaderSelectorButton(0),
-        _buildHeaderSelectorButton(1),
-        _buildHeaderSelectorButton(2),
-        _buildHeaderSelectorButton(3),
+        _buildHeaderSelectorButton(0, Icons.directions_bike),
+        _buildHeaderSelectorButton(1, Icons.motorcycle),
+        _buildHeaderSelectorButton(2, CupertinoIcons.car_detailed),
+        _buildHeaderSelectorButton(3, CupertinoIcons.airplane),
       ],
     );
   }
 
-  Widget _buildHeaderSelectorButton(int id) {
-    return IconButton(
-        onPressed: () {
-          setState(() {
-            selectedid = id;
-          });
-        },
-        icon: Icon(
-          Icons.directions_bike,
-          color: Colors.black,
-        ));
+  Widget _buildHeaderSelectorButton(int id, IconData mIcon) {
+    return Container(
+      width: 70,
+      height: 70,
+      decoration: BoxDecoration(
+        color: id == selectedid ? kAccentColor : kSecondaryColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: IconButton(
+          onPressed: () {
+            setState(() {
+              selectedid = id;
+            });
+          },
+          icon: Icon(
+            mIcon,
+            color: Colors.black,
+          )),
+    );
   }
 }
